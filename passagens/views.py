@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from passagens.forms import PassagemForms
+from .forms import PassagemForms
 # Create your views here.
 
 def index(request):
@@ -8,11 +8,11 @@ def index(request):
 
 def travels(request):
     if request.method == 'POST':
-      #  if(form.is_valid()):
-            form = PassagemForms(request.POST)  #pega as informações digitadas
+        form = PassagemForms(request.POST)  #pega as informações digitadas
+        if form.is_valid():            
             return render(request, 'passagens/list-travel.html', {'form':form})  
-   # else:
-   #     form = PassagemForms()
+        else:
+            return render(request, 'passagens/index.html', {'form': form})
     
 
 

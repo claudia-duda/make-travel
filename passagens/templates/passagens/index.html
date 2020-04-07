@@ -1,14 +1,21 @@
  {% extends 'passagens/base.html' %} {% block content %}
 <section class="col-8">
     <form action="{% url 'travels' %}" method="POST">
-        {% csrf_token %} {% for field in form.visible_fields %}
-        <!--para cada campo do formulario que seja visivel-->
-        <div class='form-group'>
-            <label for="{{ field.id_for_label }}"><!--pega o nome da label atual, onde elas foram definidas no form-->
-                    {{ field.label }} <!--nome do campo da vez-->
-                </label> 
-                {{ field }} <!--campo especifico do formulario da vez-->
-        </div>
+        {% csrf_token %} 
+        {% for field in form.visible_fields %}
+            <!--para cada campo do formulario que seja visivel-->
+            <div class='form-group'>
+                <label for="{{ field.id_for_label }}">   <!--pega o nome da label atual, onde elas foram definidas no form-->
+                    {{ field.label }}    <!--nome do campo da vez-->
+                    </label> 
+                    {{ field }}   <!--campo especifico do formulario da vez-->
+            </div>
+            {% for error in field.errors %}
+                <section class="alert alert-danger" role="alert">
+                    {{ field.errors }}
+                </section>
+            {% endfor %}    
+            
         {% endfor %}
         <input type="submit" value="Enviar" class="btn btn-success">
     </form>
