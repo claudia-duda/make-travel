@@ -1,7 +1,12 @@
-{% extends 'passagens/base.html' %} {% block content %}
+{% extends 'passagens/base.html' %}
+ {% block content %}
 <h1> Sua Viagem </h1>
 <p>Sua origem é: {{ form.origem.value }}</p>
 <p>Seu destino é: {{ form.destino.value }}</p>
 <p>Sua data de ida é: {{ form.ida.value }}</p>
 <p>Sua data de volta é: {{ form.volta.value }}</p>
+<p>Data Pesquisa : {{ form.data_pesquisa.value }}</p>
+<p>Classe do voô: {{ form.classe.value }}</p>
+<p>Informações extras{{ form.informacoes.value }}</p>
+<p>Seu email: {{ pessoaForm.email.value }}</p>
 {% endblock %}

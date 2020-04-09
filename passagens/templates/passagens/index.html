@@ -1,4 +1,6 @@
- {% extends 'passagens/base.html' %} {% block content %}
+ {% extends 'passagens/base.html' %} 
+ {% block content %}
+ {% load widget_tweaks %}
 <section class="col-8">
     <form action="{% url 'travels' %}" method="POST">
         {% csrf_token %} 
@@ -8,7 +10,7 @@
                 <label for="{{ field.id_for_label }}">   <!--pega o nome da label atual, onde elas foram definidas no form-->
                     {{ field.label }}    <!--nome do campo da vez-->
                     </label> 
-                    {{ field }}   <!--campo especifico do formulario da vez-->
+                    {{ field|add_class:'form-control' }}   <!--campo especifico do formulario da vez-->
             </div>
             {% for error in field.errors %}
                 <section class="alert alert-danger" role="alert">
@@ -17,6 +19,14 @@
             {% endfor %}    
             
         {% endfor %}
+        {% for field in pessoaForm.visible_fields %}
+            <div class= 'form-group'>
+                <label for ="{{ fiel.id_for_label}}">
+                    {{ field.label }}
+                </label>
+                {{ field|add_class:'form-control' }}
+            </div>
+        {% endfor %}    
         <input type="submit" value="Enviar" class="btn btn-success">
     </form>
 </section>
